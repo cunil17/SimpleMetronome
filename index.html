@@ -4,6 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Simple Metronome</title>
+
+  <!-- PWA -->
+  <link rel="manifest" href="/SimpleMetronome/manifest.json">
+  <meta name="theme-color" content="#020617">
+
   <style>
     body {
       font-family: system-ui, Arial, sans-serif;
@@ -38,9 +43,8 @@
     }
     button.stop { background: #ef4444; color: #450a0a; }
   </style>
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#020617">
 </head>
+
 <body>
   <div class="box">
     <h1>Metronome</h1>
@@ -55,17 +59,12 @@
 
     <input type="range" id="bpm" min="40" max="240" value="120" />
 
-    
-
     <div class="time">
       <input type="number" id="beats" min="1" max="32" value="4" />
       <input type="number" id="bar" min="1" max="16" value="4" />
     </div>
-    
 
-    <button id="toggle" aria-label="Start">
-      ▶
-    </button>
+    <button id="toggle" aria-label="Start">▶</button>
   </div>
 
   <script>
@@ -147,19 +146,15 @@
       }
       isRunning = !isRunning;
     });
-
-    // Runtime tests
-    console.assert(Number(bpmSlider.value) >= 40, 'BPM >= 40');
-    console.assert(Number(bpmSlider.value) <= 240, 'BPM <= 240');
-    console.assert(Number(beatsInput.value) >= 1, 'Beats >= 1');
   </script>
-<script>
-if ('serviceWorker' in navigator) {
-  window.addEventListener('load', () => {
-    navigator.serviceWorker.register('sw.js');
-  });
-}
-</script>
 
+  <!-- Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/SimpleMetronome/sw.js');
+      });
+    }
+  </script>
 </body>
 </html>
