@@ -1,10 +1,11 @@
 {
   "name": "Simple Metronome",
   "short_name": "Metronome",
-  "start_url": "/SimpleMetronome/",
+  "start_url": "/SimpleMetronome/index.html",
+  "scope": "/SimpleMetronome/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "background_color": "#020617",
+  "theme_color": "#020617",
   "icons": [
     {
       "src": "icons/icons-192.png",
