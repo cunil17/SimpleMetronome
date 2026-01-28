@@ -1,19 +1,21 @@
 const CACHE = "metronome-v1";
 
-self.addEventListener("install", e => {
-  e.waitUntil(
+self.addEventListener("install", event => {
+  event.waitUntil(
     caches.open(CACHE).then(cache =>
       cache.addAll([
-        "./",
-        "./index.html",
-        "./manifest.json"
+        "/SimpleMetronome/",
+        "/SimpleMetronome/index.html",
+        "/SimpleMetronome/manifest.json"
       ])
     )
   );
 });
 
-self.addEventListener("fetch", e => {
-  e.respondWith(
-    caches.match(e.request).then(res => res || fetch(e.request))
+self.addEventListener("fetch", event => {
+  event.respondWith(
+    caches.match(event.request).then(response => {
+      return response || fetch(event.request);
+    })
   );
 });
