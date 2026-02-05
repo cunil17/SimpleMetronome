@@ -1,8 +1,8 @@
 {
   "name": "Simple Metronome",
   "short_name": "Metronome",
-  "start_url": "/SimpleMetronome/index.html",
-  "scope": "/SimpleMetronome/",
+  "start_url": ".",
+  "scope": ".",
   "display": "standalone",
   "background_color": "#020617",
   "theme_color": "#020617",
