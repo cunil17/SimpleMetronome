@@ -64,6 +64,8 @@
       <input type="number" id="bar" min="1" max="16" value="4" />
     </div>
 
+    <button id="tap">TAP</button>
+
     <button id="toggle" aria-label="Start">▶</button>
   </div>
 
@@ -156,5 +158,44 @@
     });
   }
 </script>
+
+<script>
+  // ================== TAP TEMPO ==================
+let tapTimes = [];
+const MAX_TAPS = 5;
+
+const tapBtn = document.getElementById('tap');
+
+tapBtn.addEventListener('click', () => {
+  const now = Date.now();
+
+  // reset jika jeda terlalu lama
+  if (tapTimes.length && now - tapTimes[tapTimes.length - 1] > 2000) {
+    tapTimes = [];
+  }
+
+  tapTimes.push(now);
+
+  if (tapTimes.length > MAX_TAPS) {
+    tapTimes.shift();
+  }
+
+  if (tapTimes.length >= 2) {
+    const intervals = [];
+    for (let i = 1; i < tapTimes.length; i++) {
+      intervals.push(tapTimes[i] - tapTimes[i - 1]);
+    }
+
+    const avg = intervals.reduce((a, b) => a + b) / intervals.length;
+    const bpm = Math.round(60000 / avg);
+
+    if (bpm >= 40 && bpm <= 240) {
+      setBpm(bpm); // ⬅️ PENTING
+    }
+  }
+});
+// =================================================
+</script>
+
 </body>
 </html>
